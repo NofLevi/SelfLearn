@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1621509086 source:c:\users\nof\desktop\programing\selflearn\learncpp\girrafe\main.cpp
+	<iostream>
+	<cmath>
+
