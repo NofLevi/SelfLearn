@@ -74,4 +74,3 @@ class main_menu_class:
             
             pygame.display.update()
             self.mainClock.tick(60)
-    

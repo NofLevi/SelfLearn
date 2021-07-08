@@ -1,6 +1,7 @@
 import pygame
 import time
 import random
+import main_menu_file
 
 
 class game_class():
@@ -69,26 +70,31 @@ class game_class():
         return center
 
     def finish_game(self):
-        miss_text = self.font.render(str(self.timer//100), True, (0, 128, 0))
-        miss_text_rect = miss_text.get_rect(center=(self.WIDTH/2, self.HEIGHT/2))
-        self.screen.blit(miss_text, miss_text_rect)
+        self.screen.fill(self.background_color)
+        finish_miss_text = self.font.render(str("Hits:" + str(self.target_hits)), True, (0, 128, 0))
+        finish_miss_text_rect = finish_miss_text.get_rect(center=(self.WIDTH/2, self.HEIGHT/2))
+        self.screen.blit(finish_miss_text, finish_miss_text_rect)
 
-        hit_text = self.font.render(str(self.timer//100), True, (0, 128, 0))
-        hit_text_rect = hit_text.get_rect(center=(self.WIDTH/2, self.HEIGHT/2 + 60))
-        self.screen.blit(hit_text, hit_text_rect)
+        finish_hit_text = self.font.render("Miss:" + str(self.missed_shots), True, (0, 128, 0))
+        finish_hit_text_rect = finish_hit_text.get_rect(center=(self.WIDTH/2, self.HEIGHT/2 + 60))
+        self.screen.blit(finish_hit_text, finish_hit_text_rect)
+        pygame.display.update()
         
     def start_game(self):    
         finish = False
+        timer_flag = True
         while not finish:
             if self.game_flag == 1:
                 self.timer-=1
-                if self.timer%100 == 0:
+                if self.timer%100 == 0 and timer_flag == True:
                     self.screen.fill(self.background_color)
                     self.set_timer()
 
             if self.timer <= 0:
                 print("Hits: " + str(self.target_hits) + "\nMiss: " + str(self.missed_shots))
-                finish = True
+                timer_flag = False
+                self.finish_game()
+                #finish = True
                 
                 
             for event in pygame.event.get():      
@@ -118,4 +124,5 @@ class game_class():
                         else:
                             self.missed_shots += 1
             self.clock.tick(100)
-        pygame.quit()
+        var = main_menu_file.main_menu_class()
+        var.start()
