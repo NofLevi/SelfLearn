@@ -1,43 +1,23 @@
 import pygame, sys
 from pygame.locals import *
 import game_file
+from sprite_sheet_file import sprite_sheet
 
 class main_menu_class:
     
     def __init__(self):
         # Setup pygame/window ---------------------------------------- #
         pygame.init()
-        pygame.display.set_caption('game base')
-        self.screen = pygame.display.set_mode((500, 500),0,32)   
-        self.font = pygame.font.SysFont(None, 20)
-        self.mainClock = pygame.time.Clock()
-        self.click = False
-    
-    def draw_text(self,text, font, color, surface, x, y):
-        textobj = font.render(text, 1, color)
-        textrect = textobj.get_rect()
-        textrect.topleft = (x, y)
-        surface.blit(textobj, textrect)
-    
+        DISPLAY_W, DISPLAY_H = 800 , 800
+        self.canvas = pygame.Surface((DISPLAY_W,DISPLAY_H))   
+        self.window = pygame.display.set_mode(((DISPLAY_W,DISPLAY_H)))
+
+        #################################################################
+        my_spritesheet = sprite_sheet('button_play.png')
+        sprite_play = my_spritesheet.get_sprite(0,0,128,128)
+ 
     def start(self):
         while True:
-    
-            self.screen.fill((0,0,0))
-            self.draw_text('main menu', self.font, (255, 255, 255), self.screen, 20, 20)
-    
-            mx, my = pygame.mouse.get_pos()
-    
-            button_1 = pygame.Rect(50, 100, 200, 50)
-            button_2 = pygame.Rect(50, 200, 200, 50)
-            if button_1.collidepoint((mx, my)):
-                if click:
-                    self.start_game()
-            if button_2.collidepoint((mx, my)):
-                if click:
-                    self.options()
-            pygame.draw.rect(self.screen, (255, 0, 0), button_1)
-            pygame.draw.rect(self.screen, (255, 0, 0), button_2)
-    
             click = False
             for event in pygame.event.get():
                 if event.type == QUIT:
@@ -50,7 +30,11 @@ class main_menu_class:
                 if event.type == MOUSEBUTTONDOWN:
                     if event.button == 1:
                         click = True
-    
+
+        # loop code
+            self.canvas.fill((0,0,0))
+            self.canvas.blit(self.sprite_play, (0, self.DISPLAY_H - 128))
+            self.window.blit(self.canvas, (0,0))
             pygame.display.update()
             self.mainClock.tick(60)
     
@@ -58,19 +42,9 @@ class main_menu_class:
         var = game_file.game_class()
         var.start_game()
     
-    def options(self):
-        running = True
-        while running:
-            self.screen.fill((0,0,0))
+    def settings(self):
+        n = 1
     
-            self.draw_text('options', self.font, (255, 255, 255), self.screen, 20, 20)
-            for event in pygame.event.get():
-                if event.type == QUIT:
-                    self.pygame.quit()
-                    sys.exit()
-                if event.type == KEYDOWN:
-                    if event.key == K_ESCAPE:
-                        running = False
-            
-            pygame.display.update()
-            self.mainClock.tick(60)
+    def quit(self):
+        self.pygame.quit()
+        sys.exit()
