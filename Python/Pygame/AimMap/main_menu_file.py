@@ -1,6 +1,7 @@
 import pygame, sys
 from pygame.locals import *
 import game_file
+import settings_file
 from sprite_sheet_file import sprite_sheet
 
 class main_menu_class:
@@ -24,7 +25,7 @@ class main_menu_class:
 
         #play button
         my_spritesheet = sprite_sheet('button_play.png')
-        self.sprite_play = my_spritesheet.get_sprite(0,0,180,60)
+        self.sprite_play = my_spritesheet.get_sprite(0,0,185,65)
         self.canvas.blit(self.sprite_play, (self.DISPLAY_W/2 - 90, self.DISPLAY_H/2 - 80))
         self.window.blit(self.canvas, (0,0))
         
@@ -50,7 +51,8 @@ class main_menu_class:
         var.start_game()
     
     def settings(self):
-        n = 1
+        var = settings_file.settings_class()
+        var.start()
     
     def quit(self):
         self.pygame.quit()
