@@ -1,60 +1,56 @@
 import pygame, sys
 from pygame.locals import *
 from sprite_sheet_file import sprite_sheet
-import dropdown_class_file
 
-class settings_class:
+class Settings:
+    # Setup pygame/window ---------------------------------------- #
+    pygame.init()
+    DISPLAY_W, DISPLAY_H = 600 , 600
+    canvas = pygame.Surface((DISPLAY_W,.DISPLAY_H))   
+    window = pygame.display.set_mode(((DISPLAY_W,DISPLAY_H)))
+
+    #################################################################
+    #setup sprites
+
+    #logo
+    canvas.fill((0,0,0))
+    my_spritesheet = sprite_sheet('title_settings.png')
+    sprite_play = my_spritesheet.get_sprite(0,0,600,100)
+    canvas.blit(sprite_play, (0,0))
+    window.blit(canvas, (0,0))
+
+    #play button
+    my_spritesheet = sprite_sheet('button_apply.png')
+    sprite_play = my_spritesheet.get_sprite(0,0,180,60)
+    canvas.blit(sprite_play, (5, DISPLAY_H - 55))
+    window.blit(canvas, (0,0))
+        
+    #settings button
+    my_spritesheet = sprite_sheet('button_confirm.png')
+    sprite_play = my_spritesheet.get_sprite(0,0,180,60)
+    canvas.blit(sprite_play, (DISPLAY_W/2 - 90, DISPLAY_H - 55))
+    window.blit(canvas, (0,0))
+        
+
+    #quitbutton
+    my_spritesheet = sprite_sheet('button_cancel.png')
+    sprite_play = my_spritesheet.get_sprite(0,0,180,60)
+    canvas.blit(sprite_play, (DISPLAY_W - 175, DISPLAY_H - 55))
+    window.blit(canvas, (0,0))
+
+    pygame.display.update()
+        
     
-    def __init__(self):
-        # Setup pygame/window ---------------------------------------- #
-        pygame.init()
-        self.DISPLAY_W, self.DISPLAY_H = 600 , 600
-        self.canvas = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))   
-        self.window = pygame.display.set_mode(((self.DISPLAY_W,self.DISPLAY_H)))
+    #resolution switch
+    reso_img_name = ["1920x1080", "1600x900", "1280x720"]
+    reso_sprites = dict(((img_name, pygame.image.load(img_name + ".png"))for img_name in self.reso_image_names))
+    reso_imp = reso_sprites["1920x1080"]
+    #for img_name in car_image_names):
+    #    choosen_reso = car_sprites["1920x1080"]
+    ##############################################################################
 
-        #################################################################
-        #setup sprites
-
-        #logo
-        self.canvas.fill((0,0,0))
-        my_spritesheet = sprite_sheet('title_settings.png')
-        self.sprite_play = my_spritesheet.get_sprite(0,0,600,100)
-        self.canvas.blit(self.sprite_play, (0,0))
-        self.window.blit(self.canvas, (0,0))
-
-        #play button
-        my_spritesheet = sprite_sheet('button_apply.png')
-        self.sprite_play = my_spritesheet.get_sprite(0,0,180,60)
-        self.canvas.blit(self.sprite_play, (5, self.DISPLAY_H - 55))
-        self.window.blit(self.canvas, (0,0))
-        
-        #settings button
-        my_spritesheet = sprite_sheet('button_confirm.png')
-        self.sprite_play = my_spritesheet.get_sprite(0,0,180,60)
-        self.canvas.blit(self.sprite_play, (self.DISPLAY_W/2 - 90, self.DISPLAY_H - 55))
-        self.window.blit(self.canvas, (0,0))
-        
-
-        #quitbutton
-        my_spritesheet = sprite_sheet('button_cancel.png')
-        self.sprite_play = my_spritesheet.get_sprite(0,0,180,60)
-        self.canvas.blit(self.sprite_play, (self.DISPLAY_W - 175, self.DISPLAY_H - 55))
-        self.window.blit(self.canvas, (0,0))
-
-        pygame.display.update()
-
-##############################################################################
-#drop down setup
-        COLOR_INACTIVE = (100, 80, 255)
-        COLOR_ACTIVE = (100, 200, 255)
-        COLOR_LIST_INACTIVE = (255, 100, 100)
-        COLOR_LIST_ACTIVE = (255, 150, 150)
-        self.list1 = dropdown_class_file.DropDown(
-    [COLOR_INACTIVE, COLOR_ACTIVE],
-    [COLOR_LIST_INACTIVE, COLOR_LIST_ACTIVE],
-    50, 50, 200, 50, 
-    pygame.font.SysFont(None, 30), 
-    "Select Mode", ["Calibration", "Test"])
+    def car(self, x, y):
+        self.window.blit(self.reso_imp, (x, y))
     
 
     #pygame loop
@@ -80,15 +76,6 @@ class settings_class:
                     elif(x > 110 and x < 290 and y > 280 and y < 360):
                         self.quit()
                     
-                
-                selected_option = self.list1.update(event)
-                if selected_option >= 0:
-                    print(selected_option)
-
-
-                self.screen.fill((255, 255, 255))
-                self.list1.draw(self.screen)
-                pygame.display.flip()
 
         pygame.quit()
         exit()

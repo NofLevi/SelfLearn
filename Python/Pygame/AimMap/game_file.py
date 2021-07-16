@@ -1,10 +1,10 @@
 import pygame
-import time
 import random
 import main_menu_file
+import winsound
 
 
-class game_class():
+class Game():
     def __init__(self):
         #Settings [Default]
         self.circle_rad = 25
@@ -45,17 +45,11 @@ class game_class():
         self.game_flag = 0
         self.missed_shots = 0
         self.target_hits = 0
-        self.center1 = ()
+        self.center1 = (self.WIDTH/2,self.HEIGHT/2)
         self.center2 = ()
         self.timer = self.game_time
 
-    def set_timer(self):
-        self.screen.fill(self.background_color)
-        timer_text = self.font.render(str(self.timer//100), True, (0, 128, 0))
-        timer_text_rect = timer_text.get_rect(center=(self.WIDTH/2, 30))
-        self.screen.blit(timer_text, timer_text_rect)
-        pygame.draw.circle(self.screen, self.circle_color, self.center1, self.circle_rad)
-        pygame.display.update()
+
         
         
 
@@ -82,19 +76,23 @@ class game_class():
         
     def start_game(self):    
         finish = False
-        timer_flag = True
+        game_flag = False
         while not finish:
-            if self.game_flag == 1:
-                self.timer-=1
-                if self.timer%100 == 0 and timer_flag == True:
-                    self.screen.fill(self.background_color)
-                    self.set_timer()
-
+            if(self.game_flag):
+                self.timer -= 1
+            
             if self.timer <= 0:
                 print("Hits: " + str(self.target_hits) + "\nMiss: " + str(self.missed_shots))
-                timer_flag = False
+                game_flag = False
                 self.finish_game()
                 #finish = True
+            
+            if self.timer == self.game_time/2:
+                frequency = 1000  # Set Frequency To 2500 Hertz
+                duration = 100  # Set Duration To 1000 ms == 1 second
+                winsound.Beep(frequency, duration)
+                winsound.Beep(frequency, duration)
+                winsound.Beep(frequency, duration)
                 
                 
             for event in pygame.event.get():      
@@ -107,15 +105,16 @@ class game_class():
 
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     x,y = pygame.mouse.get_pos()
-
+                    if self.game_flag == False and x > self.general_center[0] - self.circle_rad and x < self.general_center[0] + self.circle_rad and y > self.general_center[1] - self.circle_rad and y < self.general_center[1] + self.circle_rad:
+                        game_flag = True
                     #first init
-                    if self.game_flag == 0:
+                    if self.game_flag == 0 and game_flag == True:
                         if x > self.general_center[0] - self.circle_rad and x < self.general_center[0] + self.circle_rad and y > self.general_center[1] - self.circle_rad and y < self.general_center[1] + self.circle_rad:
                             self.game_flag = 1
                             self.center1 = self.random_circle_draw()
                             pygame.display.update()
 
-                    else:
+                    elif game_flag == True:
                         if x > self.center1[0] - self.circle_rad and x < self.center1[0] + self.circle_rad and y > self.center1[1] - self.circle_rad and y < self.center1[1] + self.circle_rad:
                             self.target_hits += 1
                             print(self.target_hits)

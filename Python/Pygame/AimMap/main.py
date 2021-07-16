@@ -1,9 +1,9 @@
 import main_menu_file
 
-def main():
-    var = main_menu_file.main_menu_class()
+def Main():
+    var = main_menu_file.Main_menu()
     var.start()
         
     
 if __name__ == "__main__":
-    main()
+    Main()

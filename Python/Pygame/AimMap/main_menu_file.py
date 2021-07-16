@@ -4,7 +4,7 @@ import game_file
 import settings_file
 from sprite_sheet_file import sprite_sheet
 
-class main_menu_class:
+class Main_menu:
     
     def __init__(self):
         # Setup pygame/window ---------------------------------------- #
@@ -47,11 +47,11 @@ class main_menu_class:
     ##########################################################################################
     #class functions
     def start_game(self):
-        var = game_file.game_class()
+        var = game_file.Game()
         var.start_game()
     
     def settings(self):
-        var = settings_file.settings_class()
+        var = settings_file.Settings()
         var.start()
     
     def quit(self):
