@@ -6,7 +6,7 @@ class Settings:
     # Setup pygame/window ---------------------------------------- #
     pygame.init()
     DISPLAY_W, DISPLAY_H = 600 , 600
-    canvas = pygame.Surface((DISPLAY_W,.DISPLAY_H))   
+    canvas = pygame.Surface((DISPLAY_W,DISPLAY_H))
     window = pygame.display.set_mode(((DISPLAY_W,DISPLAY_H)))
 
     #################################################################
@@ -42,8 +42,8 @@ class Settings:
         
     
     #resolution switch
-    reso_img_name = ["1920x1080", "1600x900", "1280x720"]
-    reso_sprites = dict(((img_name, pygame.image.load(img_name + ".png"))for img_name in self.reso_image_names))
+    reso_img_names = ["1920x1080", "1600x900", "1280x720"]
+    reso_sprites = dict(((img_name, pygame.image.load(img_name + ".png"))for img_name in reso_img_names))
     reso_imp = reso_sprites["1920x1080"]
     #for img_name in car_image_names):
     #    choosen_reso = car_sprites["1920x1080"]
@@ -59,22 +59,22 @@ class Settings:
             click = False
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    self.pygame.quit()
+                    pygame.quit()
                     sys.exit()
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
-                        self.pygame.quit()
+                        pygame.quit()
                         sys.exit()
                         
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     x,y = pygame.mouse.get_pos()
 
-                    if(x > 110 and x < 290 and y > 120 and y < 180):
-                        self.start_game()
-                    elif(x > 110 and x < 290 and y > 200 and y < 260):
-                        self.settings()
-                    elif(x > 110 and x < 290 and y > 280 and y < 360):
-                        self.quit()
+                    #if(x > 110 and x < 290 and y > 120 and y < 180):
+                     #   self.start_game()
+                    #elif(x > 110 and x < 290 and y > 200 and y < 260):
+                     #   self.settings()
+                    #elif(x > 110 and x < 290 and y > 280 and y < 360):
+                     #   self.quit()
                     
 
         pygame.quit()

@@ -50,10 +50,7 @@ class Game():
         self.timer = self.game_time
 
 
-        
-        
-
-    #pygame.draw.circle(screen, circle_color, center, circle_rad)
+        #pygame.draw.circle(screen, circle_color, center, circle_rad)
 
     def random_circle_draw(self):
         self.screen.fill(self.background_color)
@@ -78,7 +75,7 @@ class Game():
         finish = False
         game_flag = False
         while not finish:
-            if(self.game_flag):
+            if(game_flag):
                 self.timer -= 1
             
             if self.timer <= 0:
@@ -123,5 +120,5 @@ class Game():
                         else:
                             self.missed_shots += 1
             self.clock.tick(100)
-        var = main_menu_file.main_menu_class()
+        var = main_menu_file.Main_menu()
         var.start()

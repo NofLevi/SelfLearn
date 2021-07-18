@@ -64,11 +64,11 @@ class Main_menu:
             click = False
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    self.pygame.quit()
+                    pygame.quit()
                     sys.exit()
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
-                        self.pygame.quit()
+                        pygame.quit()
                         sys.exit()
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     x,y = pygame.mouse.get_pos()
