@@ -11,3 +11,5 @@ class sprite_sheet:
         sprite.blit(self.sprite_sheet,(0,0),(x,y,w,h))
         return sprite
 
+    def get_sprite_name(self):
+        return self.filename

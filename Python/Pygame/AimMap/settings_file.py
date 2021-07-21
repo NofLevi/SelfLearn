@@ -1,7 +1,7 @@
 import pygame, sys
 from pygame.locals import *
 from sprite_sheet_file import sprite_sheet
-
+import main_menu_file
 class Settings:
     # Setup pygame/window ---------------------------------------- #
     def __init__(self):
@@ -134,13 +134,16 @@ class Settings:
         self.reso_imp = self.reso_sprites["Red"]
         self.window.blit(self.reso_imp, (300, 395))
 
-#r
-
-
         pygame.display.update()
 
 ################################################################
 #class funcs
+
+    #def update_config(self):
+    #    f = open("config.txt", "a")
+    #    f.write("Resolution: " + )
+
+#
     def position_click_checker(self, x, y):
         if(x > 490 - 50 and x < 490 + 50 and y > 180 - 50 and y < 180 + 50): #resolution right arrow
             x = 5
@@ -156,29 +159,28 @@ class Settings:
             y = 5
         elif(x > self.DISPLAY_W/2 - 90 -180 and x < self.DISPLAY_W/2 - 90 + 180 and y > self.DISPLAY_H - 125 - 60 and y < self.DISPLAY_H - 125 + 60):#confirm button
             x = 5
-        elif(x > self.DISPLAY_W - 175 - 180 and x < self.DISPLAY_W - 175 +180 and y > self.DISPLAY_H - 125 -60 and y < self.DISPLAY_H - 125 + 60):#cancel button
-            x = 5
+        elif(x > self.DISPLAY_W/2 - 175 - 180 and x < self.DISPLAY_W/2 - 175 +180 and y > self.DISPLAY_H/2 - 125 -60 and y < self.DISPLAY_H/2 - 125 + 60):#cancel button
+            return False
         elif(x > 5 - 180 and x < 5 + 180 and y > self.DISPLAY_H - 125 - 60 and y < self.DISPLAY_H - 125 + 60):#apply button
             x = 5
 
     #pygame loop
     def start(self):
-        while True:
+        loop = True
+        while loop == True:
             click = False
             for event in pygame.event.get():
                 if event.type == QUIT:
-                    pygame.quit()
-                    sys.exit()
+                    loop = False
                 if event.type == KEYDOWN:
                     if event.key == K_ESCAPE:
-                        pygame.quit()
-                        sys.exit()
+                        loop = False
                         
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     x,y = pygame.mouse.get_pos()
-                    self.position_click_checker(x,y)
+                    loop = self.position_click_checker(x,y)
 
                     
 
-        pygame.quit()
-        exit()
+        var = main_menu_file.Main_menu()
+        var.start()
