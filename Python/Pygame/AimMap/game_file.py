@@ -85,8 +85,8 @@ class Game():
                 #finish = True
             
             if self.timer == self.game_time/2:
-                frequency = 1000  # Set Frequency To 2500 Hertz
-                duration = 100  # Set Duration To 1000 ms == 1 second
+                frequency = 1000 
+                duration = 100  
                 winsound.Beep(frequency, duration)
                 winsound.Beep(frequency, duration)
                 winsound.Beep(frequency, duration)
