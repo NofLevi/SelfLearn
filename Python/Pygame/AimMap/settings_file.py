@@ -1,11 +1,13 @@
-import pygame, sys
+import pygame
 from pygame.locals import *
 from sprite_sheet_file import sprite_sheet
 import main_menu_file
+import os
 
 class Settings:
     # Setup pygame/window ---------------------------------------- #
     def __init__(self):
+        os.environ['SDL_VIDEO_CENTERED'] = '1'
         pygame.init()
         self.DISPLAY_W, self.DISPLAY_H = 600 , 800
         self.canvas = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))
@@ -26,15 +28,9 @@ class Settings:
         self.window.blit(self.canvas, (0,0))
 
         #apply button
-        self.my_spritesheet = sprite_sheet('button_apply.png')
-        self.sprite_play = self.my_spritesheet.get_sprite(0,0,180,60)
-        self.canvas.blit(self.sprite_play, (5, self.DISPLAY_H - 125))
-        self.window.blit(self.canvas, (0,0))
-            
-        #confirm button
         self.my_spritesheet = sprite_sheet('button_confirm.png')
         self.sprite_play = self.my_spritesheet.get_sprite(0,0,180,60)
-        self.canvas.blit(self.sprite_play, (self.DISPLAY_W/2 - 90, self.DISPLAY_H - 125))
+        self.canvas.blit(self.sprite_play, (5, self.DISPLAY_H - 125))
         self.window.blit(self.canvas, (0,0))
             
 
@@ -120,8 +116,8 @@ class Settings:
 
  
         # switch
-        self.reso_image_names = [pygame.image.load("1920x1080.png"), pygame.image.load("1600x900.png"), pygame.image.load("1280x720.png")]
-        self.reso_list = ["1920x1080","1600x900", "1280x720"]
+        self.reso_image_names = [pygame.image.load("1600x900.png"), pygame.image.load("1280x720.png"), pygame.image.load("1024x768.png")]
+        self.reso_list = ["1600x900","1280x720", "1024x768"]
         self.reso_imp = self.reso_image_names[0]
         self.window.blit(self.reso_imp, (300, 180))
         self.reso_index = 0
@@ -215,12 +211,9 @@ class Settings:
         elif(x > 235 - 50 and x < 235 + 50 and y > 400 - 50 and y < 400 + 50):#circle color left
              self.circle_arrow_click("left")
              return True
-        elif(x > self.DISPLAY_W/2 - 90 -180 and x < self.DISPLAY_W/2 - 90 + 180 and y > self.DISPLAY_H - 125 - 60 and y < self.DISPLAY_H - 125 + 60):#confirm button
-            self.update_config()
-            return False
         elif(x > self.DISPLAY_W/2 - 175 - 180 and x < self.DISPLAY_W/2 - 175 +180 and y > self.DISPLAY_H/2 - 125 -60 and y < self.DISPLAY_H/2 - 125 + 60):#cancel button
             return False
-        elif(x > 5 - 180 and x < 5 + 180 and y > self.DISPLAY_H - 125 - 60 and y < self.DISPLAY_H - 125 + 60):#apply button
+        elif(x > 5 - 180 and x < 5 + 180 and y > self.DISPLAY_H - 125 - 60 and y < self.DISPLAY_H - 125 + 60):#confirm button
             self.update_config()
 
     #pygame loop

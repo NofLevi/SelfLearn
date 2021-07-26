@@ -62,6 +62,7 @@ class Main_menu:
     def settings(self):
         var = settings_file.Settings()
         var.start()
+        self.load_config()
     
     def quit(self):
         self.pygame.quit()

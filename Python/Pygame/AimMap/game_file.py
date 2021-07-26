@@ -2,6 +2,7 @@ import pygame
 import random
 import main_menu_file
 import winsound
+import os
 
 
 class Game():
@@ -23,8 +24,8 @@ class Game():
         self.HEIGHT = int(lst[1])
         self.size = (self.WIDTH,self.HEIGHT)
         self.general_center = (self.WIDTH/2,self.HEIGHT/2)
-        #size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
         self.clock = pygame.time.Clock()
+        os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 
 
