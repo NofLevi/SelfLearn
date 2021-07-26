@@ -46,8 +46,17 @@ class Main_menu:
     
     ##########################################################################################
     #class functions
-    def start_game(self):
-        var = game_file.Game()
+
+    def load_config(self):
+        with open('config.txt', 'r') as file:
+            st = file.readline()
+            console_lst = st.split("-")
+            reso_lst = console_lst[0].split("x")
+
+            return [reso_lst[0],reso_lst[1],console_lst[1],console_lst[2]]
+
+    def start_game(self,lst):
+        var = game_file.Game(lst)
         var.start_game()
     
     def settings(self):
@@ -74,7 +83,8 @@ class Main_menu:
                     x,y = pygame.mouse.get_pos()
 
                     if(x > 110 and x < 290 and y > 120 and y < 180):
-                        self.start_game()
+                        lst = self.load_config()
+                        self.start_game(lst)
                     elif(x > 110 and x < 290 and y > 200 and y < 260):
                         self.settings()
                     elif(x > 110 and x < 290 and y > 280 and y < 360):

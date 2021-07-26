@@ -15,7 +15,8 @@ class Settings:
         self.blue = (0, 0, 128)
 
         #################################################################
-        #setup sprites
+        #GUI SETUP
+
 
         #logo
         self.canvas.fill((0,0,0))
@@ -76,7 +77,6 @@ class Settings:
         self.window.blit(self.canvas, (0,0))
 
 
-
         #settings text
         self.font = pygame.font.SysFont("comicsansms", 40)
         self.entry_text = self.font.render("Video:", True, (255, 0, 0))
@@ -121,16 +121,21 @@ class Settings:
  
         # switch
         self.reso_image_names = [pygame.image.load("1920x1080.png"), pygame.image.load("1600x900.png"), pygame.image.load("1280x720.png")]
+        self.reso_list = ["1920x1080","1600x900", "1280x720"]
         self.reso_imp = self.reso_image_names[0]
         self.window.blit(self.reso_imp, (300, 180))
+        self.reso_index = 0
 
         self.bg_colors_names = [ pygame.image.load("Black.png"),  pygame.image.load("Red.png"),  pygame.image.load("Blue.png"),  pygame.image.load("Yellow.png"),  pygame.image.load("Green.png"),  pygame.image.load("Purple.png")]
+        self.bg_list = ["Black","Red","Blue","Yellow","Green","Purple"]
         self.bg_imp = self.bg_colors_names[0]
         self.window.blit(self.bg_imp, (300, 320))
+        self.bg_index = 0
 
         self.circle_colors_names = [ pygame.image.load("Black.png"),  pygame.image.load("Red.png"),  pygame.image.load("Blue.png"),  pygame.image.load("Yellow.png"),  pygame.image.load("Green.png"),  pygame.image.load("Purple.png")]
         self.circle_imp = self.circle_colors_names[1]
         self.window.blit(self.circle_imp, (300, 395))
+        self.circle_index = 0
 
         pygame.display.update()
 
@@ -139,7 +144,8 @@ class Settings:
 
     def update_config(self):
         with open('config.txt', 'w') as file:
-            file.write(self.reso_imp + "-" +  self.bg_color_imp + "-" + self.circle_color_imp)
+            st = self.reso_list[self.reso_index] + "-" + self.bg_list[self.bg_index] + "-" + self.bg_list[self.circle_index]
+            file.write(st)
 
     def resolution_arrow_click(self, side):
         index = 0
@@ -150,10 +156,12 @@ class Settings:
         if index >= 1 and side == "left":
             self.reso_imp = self.reso_image_names[index-1]
             self.window.blit(self.reso_imp, (300, 180))
+            self.reso_index = index-1
         
         if index <= 1 and side == "right":
             self.reso_imp = self.reso_image_names[index+1]
             self.window.blit(self.reso_imp, (300, 180))
+            self.reso_index = index + 1
     
     def background_arrow_click(self, side):
         index = 0
@@ -164,10 +172,12 @@ class Settings:
         if index >= 1 and side == "left":
             self.bg_imp = self.bg_colors_names[index-1]
             self.window.blit(self.bg_imp, (300, 320))
+            self.bg_index = index - 1
         
         if index <= 4 and side == "right":
             self.bg_imp = self.bg_colors_names[index+1]
             self.window.blit(self.bg_imp, (300, 320))
+            self.bg_index = index + 1
 
     
     def circle_arrow_click(self, side):
@@ -179,10 +189,12 @@ class Settings:
         if index >= 1 and side == "left":
             self.circle_imp = self.circle_colors_names[index-1]
             self.window.blit(self.circle_imp, (300, 395))
+            self.circle_index = index - 1
         
         if index <= 4 and side == "right":
             self.circle_imp = self.circle_colors_names[index+1]
             self.window.blit(self.circle_imp, (300, 395))
+            self.circle_index = index + 1
 #
     def position_click_checker(self, x, y):
         if(x > 490 - 50 and x < 490 + 50 and y > 180 - 50 and y < 180 + 50): #resolution right arrow
@@ -203,12 +215,13 @@ class Settings:
         elif(x > 235 - 50 and x < 235 + 50 and y > 400 - 50 and y < 400 + 50):#circle color left
              self.circle_arrow_click("left")
              return True
-        # elif(x > self.DISPLAY_W/2 - 90 -180 and x < self.DISPLAY_W/2 - 90 + 180 and y > self.DISPLAY_H - 125 - 60 and y < self.DISPLAY_H - 125 + 60):#confirm button
-        #     return False
-        # elif(x > self.DISPLAY_W/2 - 175 - 180 and x < self.DISPLAY_W/2 - 175 +180 and y > self.DISPLAY_H/2 - 125 -60 and y < self.DISPLAY_H/2 - 125 + 60):#cancel button
-        #     return False
-        # elif(x > 5 - 180 and x < 5 + 180 and y > self.DISPLAY_H - 125 - 60 and y < self.DISPLAY_H - 125 + 60):#apply button
-        #     x = 5
+        elif(x > self.DISPLAY_W/2 - 90 -180 and x < self.DISPLAY_W/2 - 90 + 180 and y > self.DISPLAY_H - 125 - 60 and y < self.DISPLAY_H - 125 + 60):#confirm button
+            self.update_config()
+            return False
+        elif(x > self.DISPLAY_W/2 - 175 - 180 and x < self.DISPLAY_W/2 - 175 +180 and y > self.DISPLAY_H/2 - 125 -60 and y < self.DISPLAY_H/2 - 125 + 60):#cancel button
+            return False
+        elif(x > 5 - 180 and x < 5 + 180 and y > self.DISPLAY_H - 125 - 60 and y < self.DISPLAY_H - 125 + 60):#apply button
+            self.update_config()
 
     #pygame loop
     def start(self):

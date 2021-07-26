@@ -5,21 +5,28 @@ import winsound
 
 
 class Game():
-    def __init__(self):
+    def __init__(self,lst):
+
+        #RGB [Colors]
+        color_dic = {"Red":(255,0,0),"Black":(0,0,0), "Yellow":(255,255,0),"Purple":(204,0,204),"Blue":(0,0,255),"Green":(0,255,0)}
+
+
         #Settings [Default]
         self.circle_rad = 25
-        self.circle_color = (255,0,0) #Red
-        self.background_color = (0,0,0)
+        self.circle_color = color_dic[lst[3]]
+        self.background_color = color_dic[lst[2]]
         self.game_time = 1000
-        self.fps = 240
 
+        
         #Constants
-        self.WIDTH = 1280
-        self.HEIGHT = 960
+        self.WIDTH = int(lst[0])
+        self.HEIGHT = int(lst[1])
         self.size = (self.WIDTH,self.HEIGHT)
         self.general_center = (self.WIDTH/2,self.HEIGHT/2)
         #size = (pygame.display.Info().current_w, pygame.display.Info().current_h)
         self.clock = pygame.time.Clock()
+
+
 
         #Init
         pygame.init()
@@ -51,6 +58,9 @@ class Game():
 
 
         #pygame.draw.circle(screen, circle_color, center, circle_rad)
+
+
+
 
     def random_circle_draw(self):
         self.screen.fill(self.background_color)
