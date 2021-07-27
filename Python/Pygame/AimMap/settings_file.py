@@ -3,10 +3,14 @@ from pygame.locals import *
 from sprite_sheet_file import sprite_sheet
 import main_menu_file
 import os
+from pygame import mixer
 
 class Settings:
     # Setup pygame/window ---------------------------------------- #
     def __init__(self):
+
+        sound = mixer.Sound('Sound/wow.mp3')
+        sound.play()
         os.environ['SDL_VIDEO_CENTERED'] = '1'
         pygame.init()
         self.DISPLAY_W, self.DISPLAY_H = 600 , 800
@@ -116,19 +120,19 @@ class Settings:
 
  
         # switch
-        self.reso_image_names = [pygame.image.load("1600x900.png"), pygame.image.load("1280x720.png"), pygame.image.load("1024x768.png")]
+        self.reso_image_names = [pygame.image.load("images/1600x900.png").convert(), pygame.image.load("images/1280x720.png").convert(), pygame.image.load("images/1024x768.png").convert()]
         self.reso_list = ["1600x900","1280x720", "1024x768"]
         self.reso_imp = self.reso_image_names[0]
         self.window.blit(self.reso_imp, (300, 180))
         self.reso_index = 0
 
-        self.bg_colors_names = [ pygame.image.load("Black.png"),  pygame.image.load("Red.png"),  pygame.image.load("Blue.png"),  pygame.image.load("Yellow.png"),  pygame.image.load("Green.png"),  pygame.image.load("Purple.png")]
+        self.bg_colors_names = [ pygame.image.load("images/Black.png"),  pygame.image.load("images/Red.png"),  pygame.image.load("images/Blue.png"),  pygame.image.load("images/Yellow.png"),  pygame.image.load("images/Green.png"),  pygame.image.load("images/Purple.png")]
         self.bg_list = ["Black","Red","Blue","Yellow","Green","Purple"]
         self.bg_imp = self.bg_colors_names[0]
         self.window.blit(self.bg_imp, (300, 320))
         self.bg_index = 0
 
-        self.circle_colors_names = [ pygame.image.load("Black.png"),  pygame.image.load("Red.png"),  pygame.image.load("Blue.png"),  pygame.image.load("Yellow.png"),  pygame.image.load("Green.png"),  pygame.image.load("Purple.png")]
+        self.circle_colors_names = [ pygame.image.load("images/Black.png"),  pygame.image.load("images/Red.png"),  pygame.image.load("images/Blue.png"),  pygame.image.load("images/Yellow.png"),  pygame.image.load("images/Green.png"),  pygame.image.load("images/Purple.png")]
         self.circle_imp = self.circle_colors_names[1]
         self.window.blit(self.circle_imp, (300, 395))
         self.circle_index = 0

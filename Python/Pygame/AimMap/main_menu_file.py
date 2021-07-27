@@ -3,12 +3,13 @@ from pygame.locals import *
 import game_file
 import settings_file
 from sprite_sheet_file import sprite_sheet
-
+from pygame import mixer
 class Main_menu:
     
     def __init__(self):
         # Setup pygame/window ---------------------------------------- #
         pygame.init()
+
         self.DISPLAY_W, self.DISPLAY_H = 400 , 400
         self.canvas = pygame.Surface((self.DISPLAY_W,self.DISPLAY_H))   
         self.window = pygame.display.set_mode(((self.DISPLAY_W,self.DISPLAY_H)))
@@ -47,14 +48,6 @@ class Main_menu:
     ##########################################################################################
     #class functions
 
-    def load_config(self):
-        with open('config.txt', 'r') as file:
-            st = file.readline()
-            console_lst = st.split("-")
-            reso_lst = console_lst[0].split("x")
-
-            return [reso_lst[0],reso_lst[1],console_lst[1],console_lst[2]]
-
     def start_game(self,lst):
         var = game_file.Game(lst)
         var.start_game()
@@ -67,6 +60,16 @@ class Main_menu:
     def quit(self):
         self.pygame.quit()
         sys.exit()
+
+    def load_config(self):
+        with open('config.txt', 'r') as file:
+            st = file.readline()
+            console_lst = st.split("-")
+            reso_lst = console_lst[0].split("x")
+
+            return [reso_lst[0],reso_lst[1],console_lst[1],console_lst[2]]
+
+
 
     #pygame loop
     def start(self):

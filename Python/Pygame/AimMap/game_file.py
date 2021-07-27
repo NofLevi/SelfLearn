@@ -3,10 +3,15 @@ import random
 import main_menu_file
 import winsound
 import os
-
+from pygame import mixer
+import time
 
 class Game():
     def __init__(self,lst):
+
+        #sound
+        sound = mixer.Sound('Sound/mynameisjeff.mp3')
+        sound.play()
 
         #RGB [Colors]
         color_dic = {"Red":(255,0,0),"Black":(0,0,0), "Yellow":(255,255,0),"Purple":(204,0,204),"Blue":(0,0,255),"Green":(0,255,0)}
@@ -72,6 +77,8 @@ class Game():
         return center
 
     def finish_game(self):
+        sound = mixer.Sound('Sound/johncena.mp3')
+        sound.play()
         self.screen.fill(self.background_color)
         finish_miss_text = self.font.render(str("Hits:" + str(self.target_hits)), True, (0, 128, 0))
         finish_miss_text_rect = finish_miss_text.get_rect(center=(self.WIDTH/2, self.HEIGHT/2))
@@ -81,6 +88,7 @@ class Game():
         finish_hit_text_rect = finish_hit_text.get_rect(center=(self.WIDTH/2, self.HEIGHT/2 + 60))
         self.screen.blit(finish_hit_text, finish_hit_text_rect)
         pygame.display.update()
+        time.sleep(5)
         
     def start_game(self):    
         finish = False
@@ -93,7 +101,7 @@ class Game():
                 print("Hits: " + str(self.target_hits) + "\nMiss: " + str(self.missed_shots))
                 game_flag = False
                 self.finish_game()
-                #finish = True
+                finish = True
             
             if self.timer == self.game_time/2:
                 frequency = 1000 
@@ -125,10 +133,14 @@ class Game():
                     elif game_flag == True:
                         if x > self.center1[0] - self.circle_rad and x < self.center1[0] + self.circle_rad and y > self.center1[1] - self.circle_rad and y < self.center1[1] + self.circle_rad:
                             self.target_hits += 1
+                            bullet_sound = mixer.Sound('Sound/Gunshot.mp3')
+                            bullet_sound.play()
                             print(self.target_hits)
                             self.center1 = self.random_circle_draw()
                             pygame.display.update()
                         else:
+                            bullet_sound = mixer.Sound('Sound/nope.mp3')
+                            bullet_sound.play()
                             self.missed_shots += 1
             self.clock.tick(100)
         var = main_menu_file.Main_menu()
