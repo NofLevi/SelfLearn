@@ -1,0 +1,36 @@
+h4{
+    color:chartreuse;
+    text-shadow: 1px 1px;
+}
+
+h3{
+    color:coral
+}
+
+body{
+    /*background-color: #cc99ff;*/
+    background-image: url(4857fe3ffe04eb9933068d1e676977df.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    margin:auto;
+}
+
+#circle {
+    color: darkred;
+    font-size: 40px;
+}
+
+.container {
+    background: linear-gradient(to left, #00ccff, #b3f0ff);
+
+}
+
+ul li {
+    
+}
