@@ -1,26 +1,68 @@
 .container{
-    top: 50%;
     left: 50%;
-    position: absolute;
-    transform:translate(-50%, -50%);
-    margin: 0 auto;
-    width: 256px;
-    text-align: center;
-    border: 10px solid #101116;
-    background: #101116;
-    border-radius: 5px;
-}
-
-.keypad {
+    top: 50%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: minmax(60px, auto);
+    column-gap: 0;
+    grid-template-areas:
+    "title"
+    "form"
+    "keypad";
+    background: black;
+    margin: auto;
+    padding: 5%;
+    border: 5% black solid;
+    border-radius: 10px;
+    height: auto;
+    width: fit-content;
 }
 
-input[type="text"]{
-    height: 75px;
-    width: 249px;
-    background-color: #101116;
-    border: 0px;
-    color: floralwhite
+.title{
+    grid-area: title;
+    text-align: center;
+    color: aqua;
 }
+
+.inputform{
+    grid-area: form;
+    font-size: 200%;
+}
+
+input{
+    background-color: black;
+    color: white;
+    width: 100%;
+    font-size: 135%;
+}
+
+.numberbuttons{
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: auto;
+    width: auto;
+    cursor: pointer;
+    color: white;
+    background:green;
+    font-size: large;
+}
+
+.operationbuttons{
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: auto;
+    width: auto;
+    cursor: pointer;
+    color: white;
+    background:yellowgreen;
+}
+
+.keypad{
+    display: grid;
+    grid-area: keypad;
+    grid-template-columns: auto auto auto auto;
+    height: 8cm;
+   }   
+
