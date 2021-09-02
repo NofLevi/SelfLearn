@@ -2,20 +2,36 @@ import React, {useState} from 'react';
 import classes from './Calculator.module.css';
 
 function Calculator(){
-    function handleClick()
-    {
+    const [result, setResult] = useState("");
 
+    function handleClick(e)
+    {
+        setResult(result.concat(e.target.name));
+    }
+
+    function clearResult(){
+        console.log("clearresulttest");
+        setResult("");
+    }
+
+    function calculateFunc(){
+        try{
+            setResult(eval(result).toString());
+        }
+        catch{
+            window.alert("Illgal Calculation:Operation without a number afterward.");
+            console.log("Calculation Error");
+        }
+        
     }
 
     return(
         <div className = {classes.container}>
 
-            <h1 className = {classes.title}>
-                Calculator
-            </h1>
+            <h1 className = {classes.title}> Calculator </h1>
 
             <form className= {classes.inputform}>
-                <input type = "text " value = "0"></input>
+                <input type = "text " value = {result}></input>
             </form>
 
 
@@ -36,21 +52,12 @@ function Calculator(){
                     <button className = {classes.operationbuttons} name = "/" onClick ={handleClick}>/</button>
 
                     <button className = {classes.numberbuttons} name = "0"onClick ={handleClick}>0</button>
+                    <button className = {classes.operationbuttons} name = "Calculate" onClick ={calculateFunc}>Calculate</button>
+                    
+                    <button className = {classes.operationbuttons} name = "Clear" onClick ={clearResult}>Clear</button>
                     <button className = {classes.operationbuttons} name = "*" onClick ={handleClick}>*</button>
-                    <button className = {classes.operationbuttons} name = "Clear" onClick ={handleClick}>Clear</button>
-                    <button className = {classes.operationbuttons} name = "Enter" onClick ={handleClick}>Enter</button>
-
-                    
-                    
-                    
-
-
             </div>
-            
-
-
         </div>
-
 );
 }
 

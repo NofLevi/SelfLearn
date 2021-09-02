@@ -7,7 +7,7 @@
     "title"
     "form"
     "keypad";
-    background: black;
+    background: #9575cd;
     margin: auto;
     padding: 5%;
     border: 5% black solid;
@@ -25,12 +25,14 @@
 .inputform{
     grid-area: form;
     font-size: 200%;
+    align-content: center;
 }
 
 input{
-    background-color: black;
+    background-color:#9575cd;
     color: white;
-    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 135%;
 }
 
@@ -43,7 +45,7 @@ input{
     width: auto;
     cursor: pointer;
     color: white;
-    background:green;
+    background:#2196f3;
     font-size: large;
 }
 
