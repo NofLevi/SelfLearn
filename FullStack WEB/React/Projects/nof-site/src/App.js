@@ -1,8 +1,7 @@
 import { Route, Switch } from 'react-router-dom';
 
 import CalculatorPage from './pages/CalculatorPage';
-//import NewMeetupPage from './pages/NewMeetup';
-//import FavoritesPage from './pages/Favorites';
+import MapPage from './pages/MapPage';
 import Layout from './components/layout/Layout';
 
 function App() {
@@ -17,8 +16,10 @@ function App() {
           <CalculatorPage />
         </Route>
         
-        <Route path='/favorites'>
+        <Route path='/Map'>
+          <MapPage/>
         </Route>
+        
       </Switch>
     </Layout>
   );

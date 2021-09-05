@@ -1,0 +1,11 @@
+.container{
+    display: grid;
+    grid-template-areas:
+    "map";
+    float:right;
+}
+
+.map{
+    grid-area: map;
+    right: 20%;
+}

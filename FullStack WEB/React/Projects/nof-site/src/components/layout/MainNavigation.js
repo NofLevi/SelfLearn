@@ -13,11 +13,11 @@ function MainNavigation() {
             <Link to='/Calculator'>Calculator</Link>
           </li>
           <li>
-            <Link to='/new-meetup'>Add New Meetup</Link>
+            <Link to='/Map'>Map</Link>
           </li>
           <li>
-            <Link to='/favorites'>
-              My Favorites
+            <Link to='/temp2'>
+              temp2
             </Link>
           </li>
         </ul>
