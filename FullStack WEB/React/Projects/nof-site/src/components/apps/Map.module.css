@@ -2,10 +2,45 @@
     display: grid;
     grid-template-areas:
     "map";
-    float:right;
 }
 
 .map{
     grid-area: map;
     right: 20%;
 }
+
+.redmarker{
+    background-image: url('../images/RedV.png');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.greenmarker{
+    background-image: url('../images/GreenV.png');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.yellowmarker{
+    background-image: url('../images/YellowV.png');
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.mapboxgl-popup {
+    max-width: 200px;
+  }
+  
+  .mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+  }
