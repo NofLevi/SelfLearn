@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qFBN6lm2NortbX17ZOPc74xmv/lM9Npr2CnyW6YVIlQ=",
+  "Hash": "+QgCrk4WJ1AEtDj7ADQkhv0nKv+58TQbYl+hqXuOmfE=",
   "Source": "RazorPizzeria",
   "BasePath": "_content/RazorPizzeria",
   "Mode": "Default",
@@ -83,6 +83,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Nof\\Desktop\\Programing\\SelfLearn\\DotNet\\RazorPizzeria\\wwwroot\\images\\6223994-4815610017-26bb0.png",
+      "SourceId": "RazorPizzeria",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Nof\\Desktop\\Programing\\SelfLearn\\DotNet\\RazorPizzeria\\wwwroot\\",
+      "BasePath": "_content/RazorPizzeria",
+      "RelativePath": "images/6223994-4815610017-26bb0.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\6223994-4815610017-26bb0.png"
+    },
+    {
+      "Identity": "C:\\Users\\Nof\\Desktop\\Programing\\SelfLearn\\DotNet\\RazorPizzeria\\wwwroot\\images\\cb69a146d5aef267f4e41828c9df8e5d.jpg",
+      "SourceId": "RazorPizzeria",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Nof\\Desktop\\Programing\\SelfLearn\\DotNet\\RazorPizzeria\\wwwroot\\",
+      "BasePath": "_content/RazorPizzeria",
+      "RelativePath": "images/cb69a146d5aef267f4e41828c9df8e5d.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\cb69a146d5aef267f4e41828c9df8e5d.jpg"
     },
     {
       "Identity": "C:\\Users\\Nof\\Desktop\\Programing\\SelfLearn\\DotNet\\RazorPizzeria\\wwwroot\\images\\Pizzas\\Bolognese.png",
